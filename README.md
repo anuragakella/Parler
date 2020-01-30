@@ -1,5 +1,5 @@
 # Parler 
-# [french for 'to speak']
+## [french for 'to speak']
 A Python Socket based Chat App.
 /Direct has two files for a Single One-to-One chat app
   - run_server.py serves the app
