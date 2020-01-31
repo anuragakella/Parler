@@ -10,6 +10,7 @@ s = socket.socket()
 print("Connected to IP: " + "Server" + ":" + "9999")
 print("Wrap commands in %/%.")
 
+global hist
 hist = []
 sender_h = []
 
@@ -29,6 +30,8 @@ def refresh():
     
 
 def send_txt():
+    hist = []
+    sender_h = []
     while True and not kill:
         inp = input()
         try:
@@ -45,7 +48,7 @@ def send_txt():
                 sys.exit()
             sleep(1)
             s.send(str.encode(inp)) 
-            self.hist.append(inp)
+            hist.append(inp)
             sender_h.append("You")
             refresh()    
             if(inp == "%cls%"):
@@ -54,10 +57,11 @@ def send_txt():
                 refresh()
 
 
-s.connect(("192.168.0.5", 9999))
+s.connect(("192.168.0.23", 9999))
 
 sn = Thread(target=send_txt)
 sn.start()
+
 
 while True:
     data = s.recv(1024)
@@ -73,5 +77,5 @@ while True:
             pass
         else:
             hist.append(m)
-            sender_h.append("192.168.0.5")
+            sender_h.append("192.168.0.23")
             refresh()
